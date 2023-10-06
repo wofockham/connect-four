@@ -50,3 +50,21 @@ header {
     border-radius: 100%;
     border: 0.1vmin solid grey;
 }
+
+button {
+    margin-top: 4vmin;
+    padding: 2vmin;
+    font-size: 2vmin;
+    border-radius: 4vmin;
+    border: 0.1vmin solid grey;
+    color: grey;
+}
+
+button:hover {
+    color: white;
+    background-color: darkgrey;
+}
+
+header, h1, button {
+    text-transform: uppercase;
+}
