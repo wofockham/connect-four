@@ -65,7 +65,8 @@ function checkWinner(row, column) {
         checkVertical(row, column) ||
         checkHorizontal(row, column) ||
         checkDiagonalUpperLeftToLowerRight(row, column) ||
-        checkDiagonalLowerLeftToUpperRight(row, column)
+        checkDiagonalLowerLeftToUpperRight(row, column) ||
+        checkDraw()
     );
 }
 
@@ -108,6 +109,18 @@ function countAdjacent(row, column, rowOffset, columnOffset) {
     return count;
 }
 
+function checkDraw() {
+    for (let columnIndex = 0; columnIndex < state.board.length; columnIndex++) {
+        for (let rowIndex = 0; rowIndex < state.board[columnIndex].length; rowIndex++) {
+            if (state.board[columnIndex][rowIndex] === 0) {
+                return null;
+            }
+        }
+    }
+
+    return 'Tie';
+}
+
 function render() {
     renderBoard();
     renderMessage();
@@ -125,12 +138,13 @@ function renderBoard() {
 }
 
 function renderMessage() {
-    if (state.winner) {
+    if (state.winner === 'Tie') {
+        elements.message.innerHTML = `It's a draw`;
+    } else if (state.winner) {
         elements.message.innerHTML = `<span style="color: ${ COLORS[state.winner] }">${ COLORS[state.winner] }</span> wins!`;
     } else {
         elements.message.innerHTML = `<span style="color: ${ COLORS[state.turn] }">${ COLORS[state.turn] }</span>'s turn`;
     }
-    // TODO: show tie
 }
 
 function renderControls() {
