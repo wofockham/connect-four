@@ -51,6 +51,9 @@ function handleDrop(event) {
     }
     const column = state.board[columnIndex];
     const rowIndex = column.indexOf(0);
+    if (rowIndex === -1) {
+        return; // this column is full
+    }
     column[rowIndex] = state.turn;
     state.turn *= -1; // 1, -1, 1, -1, 1, -1
     state.winner = checkWinner(rowIndex, columnIndex);
