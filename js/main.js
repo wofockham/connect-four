@@ -71,25 +71,25 @@ function checkWinner(row, column) {
 }
 
 function checkVertical(row, column) {
-    return countAdjacent(row, column, -1, 0) === 3 ? state.board[column][row] : null;
+    return countAdjacent(row, column, -1, 0) >= 3 ? state.board[column][row] : null;
 }
 
 function checkHorizontal(row, column) {
     const countLeft = countAdjacent(row, column, 0, -1);
     const countRight = countAdjacent(row, column, 0, 1);
-    return (countLeft + countRight === 3) ? state.board[column][row] : null;
+    return (countLeft + countRight >= 3) ? state.board[column][row] : null;
 }
 
 function checkDiagonalUpperLeftToLowerRight(row, column) {
     const countLeft = countAdjacent(row, column, -1, -1);
     const countRight = countAdjacent(row, column, 1, 1);
-    return (countLeft + countRight === 3) ? state.board[column][row] : null;
+    return (countLeft + countRight >= 3) ? state.board[column][row] : null;
 }
 
 function checkDiagonalLowerLeftToUpperRight(row, column) {
     const countLeft = countAdjacent(row, column, 1, -1);
     const countRight = countAdjacent(row, column, -1, 1);
-    return (countLeft + countRight === 3) ? state.board[column][row] : null;
+    return (countLeft + countRight >= 3) ? state.board[column][row] : null;
 }
 
 function countAdjacent(row, column, rowOffset, columnOffset) {
